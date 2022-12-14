@@ -59,13 +59,6 @@ public class WeaponEditor : Editor
 			if (weapon.type == WeaponType.Raycast || weapon.type == WeaponType.Beam)
 				weapon.raycastStartSpot = (Transform)EditorGUILayout.ObjectField("Raycasting Point", weapon.raycastStartSpot, typeof(Transform), true);
 
-			// Projectile
-			if (weapon.type == WeaponType.Projectile)
-			{
-				weapon.projectile = (GameObject)EditorGUILayout.ObjectField("Projectile", weapon.projectile, typeof(GameObject), false);
-				weapon.projectileSpawnSpot = (Transform)EditorGUILayout.ObjectField("Projectile Spawn Point", weapon.projectileSpawnSpot, typeof(Transform), true);
-			}
-
 			// Beam
 			if (weapon.type == WeaponType.Beam)
 			{
