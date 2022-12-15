@@ -39,24 +39,27 @@ public class Gun : MonoBehaviour
         gunData.reloading = false;
     }
 
-    private bool CanShoot() => !gunData.reloading && timeSinceLastShot > 1f / (gunData.fireRate / 60f);
+/*    private bool CanShoot() => !gunData.reloading && timeSinceLastShot > 1f / (gunData.fireRate / 60f);*/
 
     private void Shoot()
     {
         if (gunData.currentAmmo > 0)
         {
-            if (CanShoot())
-            {
-                if (Physics.Raycast(cam.position, cam.forward, out RaycastHit hitInfo, gunData.maxDistance))
+            
+                if (Physics.Raycast(cam.position, cam.forward, out RaycastHit hitInfo, gunData.maxDistance*100))
                 {
                     IDamageable damageable = hitInfo.transform.GetComponent<IDamageable>();
                     damageable?.TakeDamage(gunData.damage);
+                    Debug.Log(damageable);
                 }
 
+                var bullet = Instantiate(bulletPrefab, cam.position, cam.rotation);
+                bullet.GetComponent<Rigidbody>().velocity = cam.forward * 30;
                 gunData.currentAmmo--;
+                  
                 timeSinceLastShot = 0;
                 OnGunShot();
-            }
+            
         }
     }
 
@@ -65,9 +68,13 @@ public class Gun : MonoBehaviour
         timeSinceLastShot += Time.deltaTime;
         if (Input.GetMouseButtonDown(0))
         {
-            var bullet = Instantiate(bulletPrefab, cam.position, cam.rotation);
-            bullet.GetComponent<Rigidbody>().velocity = cam.forward * 30;
+            if (gunData.currentAmmo > 0)
+            {
+                
+                Shoot();
+            }
         }
+
         Debug.DrawRay(cam.position, cam.forward * gunData.maxDistance);
 
         
