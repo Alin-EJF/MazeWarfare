@@ -54,7 +54,7 @@ public class Gun : MonoBehaviour
                 }
 
                 var bullet = Instantiate(bulletPrefab, cam.position, cam.rotation);
-                bullet.GetComponent<Rigidbody>().velocity = cam.forward * 30;
+                bullet.GetComponent<Rigidbody>().velocity = cam.forward * 1000;
                 gunData.currentAmmo--;
                   
                 timeSinceLastShot = 0;
