@@ -13,7 +13,7 @@ public class NetworkPlayerSpawner : MonoBehaviourPunCallbacks
    {
        
         base.OnJoinedRoom();
-        int[ ] xSpawnPoints = new int[]{100, -100, 200} ;
+        int[] xSpawnPoints = new int[]{100, -100, 200} ;
         int[] zSpawnPoints = new int[]{100, -100, -100};
         var index = Random.Range(0, xSpawnPoints.Length);
         XROrigin.transform.Translate(xSpawnPoints[index],0,zSpawnPoints[index]);
