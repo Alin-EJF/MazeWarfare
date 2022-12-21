@@ -5,8 +5,7 @@ using Photon.Pun;
 
 public class NetworkPlayerSpawner : MonoBehaviourPunCallbacks
 {
-   public Transform playerSpawnPoint;
-   public GameObject XROrigin;
+
    private GameObject spawnedPlayerPrefab;
 
    public override void OnJoinedRoom()
@@ -17,7 +16,7 @@ public class NetworkPlayerSpawner : MonoBehaviourPunCallbacks
         int[] zSpawnPoints = new int[]{100, -100, -100};
         var index = Random.Range(0, xSpawnPoints.Length);
         XROrigin.transform.Translate(xSpawnPoints[index],0,zSpawnPoints[index]);*/
-        spawnedPlayerPrefab = PhotonNetwork.Instantiate("Network Player", playerSpawnPoint.position, playerSpawnPoint.rotation);
+        spawnedPlayerPrefab = PhotonNetwork.Instantiate("Network Player demo", transform.position, transform.rotation);
    }
 
    public override void OnLeftRoom()
