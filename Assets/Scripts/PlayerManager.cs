@@ -32,7 +32,7 @@ public class PlayerManager : MonoBehaviour
 	void CreateController()
 	{
 		Transform spawnpoint = transform;
-		controller = PhotonNetwork.Instantiate("Network Player demo", spawnpoint.position, spawnpoint.rotation, 0, new object[] { PV.ViewID });
+		controller = PhotonNetwork.Instantiate("Network Player", spawnpoint.position, spawnpoint.rotation, 0, new object[] { PV.ViewID });
 	}
 
 	public void Die()

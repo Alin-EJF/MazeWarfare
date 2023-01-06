@@ -9,13 +9,13 @@ using Unity.XR.CoreUtils;
 public class NetworkPlayer : MonoBehaviour
 {
     public Transform head;
-    public Transform leftHand;
-    public Transform rightHand;
+    //public Transform leftHand;
+    //public Transform rightHand;
     private PhotonView photonView;
 
     private Transform headRig;
-    private Transform rightHandRig;
-    private Transform leftHandRig;
+    //private Transform rightHandRig;
+    //private Transform leftHandRig;
 
     // Start is called before the first frame update
     void Start()
@@ -23,8 +23,8 @@ public class NetworkPlayer : MonoBehaviour
         photonView= GetComponent<PhotonView>();
         XROrigin rig = FindObjectOfType<XROrigin>();
         headRig= rig.transform.Find("Camera Offset/Main Camera");
-        rightHandRig= rig.transform.Find("Camera Offset/RightHand Controller");
-        leftHandRig = rig.transform.Find("Camera Offset/LeftHand Controller");
+        // rightHandRig= rig.transform.Find("Camera Offset/RightHand Controller");
+       //  leftHandRig = rig.transform.Find("Camera Offset/LeftHand Controller");
 
     }
 
@@ -33,12 +33,13 @@ public class NetworkPlayer : MonoBehaviour
     {   
         if (photonView.IsMine)
         {
-            rightHand.gameObject.SetActive(true);
-            leftHand.gameObject.SetActive(false);
-            head.gameObject.SetActive(true);
+            //rightHand.gameObject.SetActive(true);
+            //leftHand.gameObject.SetActive(false);
+            head.gameObject.SetActive(false);
+            
             MapPosition(head, headRig);
-            MapPosition(rightHand, rightHandRig);
-            MapPosition(leftHand, leftHandRig);
+            //MapPosition(rightHand, rightHandRig);
+            //MapPosition(leftHand, leftHandRig);
         }
 ;
     }
