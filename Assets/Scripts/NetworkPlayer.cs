@@ -8,11 +8,11 @@ using Unity.XR.CoreUtils;
 
 public class NetworkPlayer : MonoBehaviour
 {
-    public Transform body;  
+    public Transform body;
+    public Transform soldierBody;
     //public Transform leftHand;
     //public Transform rightHand;
     private PhotonView photonView;
-
     private Transform bodyRig;
     //private Transform rightHandRig;
     //private Transform leftHandRig;
@@ -20,9 +20,14 @@ public class NetworkPlayer : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        photonView= GetComponent<PhotonView>();
+        photonView = GetComponent<PhotonView>();
         XROrigin rig = FindObjectOfType<XROrigin>();
-        bodyRig= rig.transform.Find("Camera Offset/Main Camera");
+        GameObject spawnPoints = GameObject.Find("SpawnPoints");
+        int random = UnityEngine.Random.Range(0, 2);
+        GameObject spawnPoint = spawnPoints.transform.GetChild(random).gameObject;
+        Vector3 newPosition = new Vector3(spawnPoint.transform.position.x, rig.transform.position.y,spawnPoint.transform.position.z);
+        rig.transform.position = newPosition;
+        bodyRig = rig.transform.Find("Camera Offset/Main Camera");
         // rightHandRig= rig.transform.Find("Camera Offset/RightHand Controller");
        //  leftHandRig = rig.transform.Find("Camera Offset/LeftHand Controller");
 
@@ -33,9 +38,9 @@ public class NetworkPlayer : MonoBehaviour
     {   
         if (photonView.IsMine)
         {
-            //rightHand.gameObject.SetActive(true);
-            //leftHand.gameObject.SetActive(false);
-            //body.gameObject.SetActive(false);  
+            /*rightHand.gameObject.SetActive(true);
+            leftHand.gameObject.SetActive(false);*/
+            soldierBody.gameObject.SetActive(false);
             
             MapPosition(body, bodyRig);
             //MapPosition(rightHand, rightHandRig);
@@ -46,7 +51,7 @@ public class NetworkPlayer : MonoBehaviour
 
     void MapPosition(Transform target, Transform rigTransform)
     {
-        target.position = rigTransform.position;
-        target.rotation = rigTransform.rotation;
+          target.position = rigTransform.position;
+          target.rotation = rigTransform.rotation;
     }
 }
