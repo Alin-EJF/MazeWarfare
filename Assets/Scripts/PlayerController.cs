@@ -6,11 +6,13 @@ using UnityEngine;
 using UnityEngine.UI;
 using Hashtable = ExitGames.Client.Photon.Hashtable;
 
-public class PlayerController : MonoBehaviour, IDamageable
+public class PlayerController : MonoBehaviourPunCallbacks, IDamageable
 {
+
+    [SerializeField] Image healthbarImage;
+    [SerializeField] GameObject ui;
     const float maxHealth = 100f;
     float currentHealth = maxHealth;
-    public Image healthbar;
     private Rigidbody rb;
 
     private PhotonView PV;
@@ -32,6 +34,7 @@ public class PlayerController : MonoBehaviour, IDamageable
          {
            Destroy(GetComponentInChildren<Camera>().gameObject);
            Destroy(rb);
+           Destroy(ui);
          }
     }
 
@@ -54,10 +57,11 @@ public class PlayerController : MonoBehaviour, IDamageable
 		
         currentHealth -= damage;
 
+        
         Debug.Log("currentHealth" + currentHealth);
         
-        /*healthbarImage.fillAmount = currentHealth / maxHealth;*/
-
+        healthbarImage.fillAmount = currentHealth / maxHealth;
+        Debug.Log(healthbarImage.fillAmount);
         if(currentHealth <= 0)
         {
             Die();

@@ -40,7 +40,7 @@ public class NetworkPlayer : MonoBehaviour
         {
             /*rightHand.gameObject.SetActive(true);
             leftHand.gameObject.SetActive(false);*/
-            soldierBody.gameObject.SetActive(false);
+            //soldierBody.gameObject.SetActive(false);
             
             MapPosition(body, bodyRig);
             //MapPosition(rightHand, rightHandRig);
