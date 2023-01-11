@@ -27,12 +27,12 @@ public class PlayerController : MonoBehaviour, IDamageable
         playerManager = PhotonView.Find((int)PV.InstantiationData[0]).GetComponent<PlayerManager>();
     }
     void Start()
-    {
-        if(!PV.IsMine)
-        {
-            Destroy(GetComponentInChildren<Camera>().gameObject);
-            Destroy(rb);
-        }
+    {   
+         if(!PV.IsMine)
+         {
+           Destroy(GetComponentInChildren<Camera>().gameObject);
+           Destroy(rb);
+         }
     }
 
     void Update()

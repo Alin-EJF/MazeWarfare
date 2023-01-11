@@ -8,12 +8,12 @@ using Unity.XR.CoreUtils;
 
 public class NetworkPlayer : MonoBehaviour
 {
-    public Transform head;
+    public Transform body;  
     //public Transform leftHand;
     //public Transform rightHand;
     private PhotonView photonView;
 
-    private Transform headRig;
+    private Transform bodyRig;
     //private Transform rightHandRig;
     //private Transform leftHandRig;
 
@@ -22,7 +22,7 @@ public class NetworkPlayer : MonoBehaviour
     {
         photonView= GetComponent<PhotonView>();
         XROrigin rig = FindObjectOfType<XROrigin>();
-        headRig= rig.transform.Find("Camera Offset/Main Camera");
+        bodyRig= rig.transform.Find("Camera Offset/Main Camera");
         // rightHandRig= rig.transform.Find("Camera Offset/RightHand Controller");
        //  leftHandRig = rig.transform.Find("Camera Offset/LeftHand Controller");
 
@@ -35,9 +35,9 @@ public class NetworkPlayer : MonoBehaviour
         {
             //rightHand.gameObject.SetActive(true);
             //leftHand.gameObject.SetActive(false);
-            head.gameObject.SetActive(false);
+            //body.gameObject.SetActive(false);  
             
-            MapPosition(head, headRig);
+            MapPosition(body, bodyRig);
             //MapPosition(rightHand, rightHandRig);
             //MapPosition(leftHand, leftHandRig);
         }

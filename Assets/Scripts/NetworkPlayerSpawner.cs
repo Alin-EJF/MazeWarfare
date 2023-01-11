@@ -27,3 +27,9 @@ public class NetworkPlayerSpawner : MonoBehaviourPunCallbacks
         PhotonNetwork.Destroy(spawnedPlayerPrefab);
    }
 }
+
+
+
+
+
+ 
