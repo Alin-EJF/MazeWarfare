@@ -53,6 +53,7 @@ public class NetworkPlayer : MonoBehaviour
             {
                 Debug.Log("Win");
             }
+            body.GetComponent<BoxCollider>().enabled = false;
             //MapPosition(rightHand, rightHandRig);
             //MapPosition(leftHand, leftHandRig);
         }
