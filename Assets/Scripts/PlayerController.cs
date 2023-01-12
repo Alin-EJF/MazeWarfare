@@ -19,8 +19,6 @@ public class PlayerController : MonoBehaviourPunCallbacks, IDamageable
 
     PlayerManager playerManager;
     
-  
-
     void Awake()
     {
         rb = GetComponent<Rigidbody>();
@@ -56,7 +54,6 @@ public class PlayerController : MonoBehaviourPunCallbacks, IDamageable
             return;
 		
         currentHealth -= damage;
-
         
         Debug.Log("currentHealth" + currentHealth);
         

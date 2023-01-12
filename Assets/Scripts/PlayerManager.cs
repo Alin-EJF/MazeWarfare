@@ -46,6 +46,11 @@ public class PlayerManager : MonoBehaviour
 		hash.Add("deaths", deaths);
 		PhotonNetwork.LocalPlayer.SetCustomProperties(hash);
 	}
+	
+	public void Win()
+	{
+		PhotonNetwork.LoadLevel(2);
+	}
 
 	public void GetKill()
 	{
