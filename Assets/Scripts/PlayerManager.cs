@@ -64,6 +64,7 @@ public class PlayerManager : MonoBehaviour
 
 		Hashtable hash = new Hashtable();
 		hash.Add("kills", kills);
+		Debug.Log(kills);
 		PhotonNetwork.LocalPlayer.SetCustomProperties(hash);
 	}
 

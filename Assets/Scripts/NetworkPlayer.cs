@@ -28,7 +28,7 @@ public class NetworkPlayer : MonoBehaviour
             
         XROrigin rig = FindObjectOfType<XROrigin>();
         GameObject spawnPoints = GameObject.Find("SpawnPoints");
-        int random = UnityEngine.Random.Range(0, 2);
+        int random = UnityEngine.Random.Range(0, 5);
         GameObject spawnPoint = spawnPoints.transform.GetChild(random).gameObject;
         Vector3 newPosition = new Vector3(spawnPoint.transform.position.x, rig.transform.position.y,spawnPoint.transform.position.z);
         rig.transform.position = newPosition;
