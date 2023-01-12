@@ -15,6 +15,7 @@ public class PlayerManager : MonoBehaviour
 
 	int kills;
 	int deaths;
+	int points;
 
 	void Awake()
 	{
@@ -46,16 +47,21 @@ public class PlayerManager : MonoBehaviour
 		hash.Add("deaths", deaths);
 		PhotonNetwork.LocalPlayer.SetCustomProperties(hash);
 	}
-	
-	public void Win()
+
+	public void GainPoints()
 	{
-		PhotonNetwork.LoadLevel(2);
+		points = points + 1;
+		
+		Hashtable hash = new Hashtable();
+		hash.Add("points", points);
+		PhotonNetwork.LocalPlayer.SetCustomProperties(hash);
 	}
 
 	public void GetKill()
 	{
 		PV.RPC(nameof(RPC_GetKill), PV.Owner);
 	}
+	
 
 	[PunRPC]
 	void RPC_GetKill()
@@ -64,7 +70,6 @@ public class PlayerManager : MonoBehaviour
 
 		Hashtable hash = new Hashtable();
 		hash.Add("kills", kills);
-		Debug.Log(kills);
 		PhotonNetwork.LocalPlayer.SetCustomProperties(hash);
 	}
 

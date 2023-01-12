@@ -13,7 +13,7 @@ public class PlayerController : MonoBehaviourPunCallbacks, IDamageable
     [SerializeField] GameObject ui;
     const float maxHealth = 100f;
     float currentHealth = maxHealth;
-    private Rigidbody rb;
+    private NetworkPlayer rb;
 
     private PhotonView PV;
 
@@ -21,7 +21,7 @@ public class PlayerController : MonoBehaviourPunCallbacks, IDamageable
     
     void Awake()
     {
-        rb = GetComponent<Rigidbody>();
+        rb = GetComponent<NetworkPlayer>();
         PV = GetComponent<PhotonView>();
 
         playerManager = PhotonView.Find((int)PV.InstantiationData[0]).GetComponent<PlayerManager>();
@@ -40,8 +40,17 @@ public class PlayerController : MonoBehaviourPunCallbacks, IDamageable
     {
         if(!PV.IsMine)
             return;
+        
+        if ( Mathf.RoundToInt(rb.transform.position.x) >= -3
+             && Mathf.RoundToInt(rb.transform.position.x)  <= 6 
+             &&  Mathf.RoundToInt(rb.transform.position.z) >= 44
+             &&  Mathf.RoundToInt(rb.transform.position.z) <= 55 )
+        {
+            playerManager.GainPoints();
+        }
+
     }
-    
+
     public void TakeDamage(float damage)
     {
         PV.RPC(nameof(RPC_TakeDamage), PV.Owner, damage);

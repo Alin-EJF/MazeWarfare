@@ -53,16 +53,7 @@ public class NetworkPlayer : MonoBehaviour
 			GameObject winPortal = GameObject.Find("WinPortal");
 
             Debug.Log(Mathf.RoundToInt(body.position.x) + " " + Mathf.RoundToInt(body.position.z) );
-            
-            if ( Mathf.RoundToInt(body.position.x) >= -3
-                 && Mathf.RoundToInt(body.position.x)  <= 6 
-                 &&  Mathf.RoundToInt(body.position.z) >= 44
-                 &&  Mathf.RoundToInt(body.position.z) <= 55 )
-            {
-                Debug.Log("Win");
-                playerManager.Win();
-            }
-           
+
             body.GetComponent<BoxCollider>().enabled = false;
             //MapPosition(rightHand, rightHandRig);
             //MapPosition(leftHand, leftHandRig);
