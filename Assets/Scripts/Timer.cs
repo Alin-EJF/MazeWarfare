@@ -7,7 +7,7 @@ using TMPro;
 
 public class Timer : MonoBehaviourPunCallbacks
 {
-    private float countdown = 120;
+    private float countdown = 600;
     private PhotonView PV;
     public TMP_Text secondsText;
     private bool timeIsUp = false;
